@@ -6,6 +6,6 @@ yum install mongodb-org -y &>>/tmp/roboshop.log
 
 #Modify the config file
 
-echo -e "\e[33m \e[0m"
+echo -e "\e[33m Start MongoDB Service\e[0m"
 systemctl enable mongod &>>/tmp/roboshop.log
 systemctl restart mongod &>>/tmp/roboshop.log
