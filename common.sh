@@ -1,10 +1,10 @@
 color="\e[35m"
 nocolor=" ${no_color}"
 log_file="/tmp/roboshop.log"
-app_path="${app_path}"
+app_path="/app"
 
 app_presetup(){
-  echo -e "${color} Adding Roboshop user  ${nocolor}"
+  echo -e "${color} Add Application User  ${nocolor}"
   useradd roboshop &>>${log_file}
 
   echo -e "${color} Creating App Directory  ${no_color}"
@@ -12,22 +12,22 @@ app_presetup(){
   mkdir ${app_path}
 
   echo -e "${color} Download Application content  ${nocolor}"
-  curl -o /tmp/$component.zip https://roboshop-artifacts.s3.amazonaws.com/$component.zip &>>${log_file}
+  curl -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip &>>${log_file}
   cd ${app_path}
 
   echo -e "${color} Extract the application content  ${nocolor}"
-  cd /app
-  unzip /tmp/$component.zip &>>${log_file}
+  cd ${app_path}
+  unzip /tmp/${component}.zip &>>${log_file}
 }
 
 systemd_setup(){
   echo -e "${color} Setup systemd service ${nocolor}"
-  cp /home/centos/roboshop-shell/$component.service /etc/systemd/system/$component.service
+  cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service
 
-  echo -e "${color} Start $component service  ${nocolor}"
+  echo -e "${color} Start ${component} service  ${nocolor}"
   systemctl daemon-reload &>>${log_file}
-  systemctl enable $component &>>${log_file}
-  systemctl restart $component &>>${log_file}
+  systemctl enable ${component} &>>${log_file}
+  systemctl restart ${component} &>>${log_file}
 }
 
 nodejs(){
@@ -53,14 +53,14 @@ mongodb(){
   yum install mongodb-org-shell -y &>>${log_file}
 
   echo -e "${color} Load Schema  ${nocolor}"
-  mongo --host mongodb-dev.roboshopai.online <${app_path}/schema/$component.js &>>${log_file}
+  mongo --host mongodb-dev.roboshopai.online <${app_path}/schema/${component}.js &>>${log_file}
 }
 mysql_schema_setup(){
   echo -e "${color} Installing Mysql  ${no_color}"
   yum install mysql -y &>>${log_file}
 
   echo -e "${color} Load Schema ${nocolor}"
-  mysql -h mysql-dev.devopsb73.store -uroot -p${mysql_root_password} </app/schema/${component}.sql   &>>$log_file
+  mysql -h mysql-dev.devopsb73.store -uroot -p${mysql_root_password} <${app_path}/schema/${component}.sql   &>>$log_file
 }
 maven(){
   echo -e "${color} Installing Maven  ${no_color}"
