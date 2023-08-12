@@ -6,7 +6,7 @@ echo -e "\e[33mAdd application User \e[0m"
 useradd roboshop &>>/tmp/roboshop.log
 
 echo -e "\e[33mSetup an app directory. \e[0m"
-rmdir /app &>>/tmp/roboshop.log
+rm -rf /app &>>/tmp/roboshop.log
 mkdir /app
 
 echo -e "\e[33mDownload the application code to created app directory. \e[0m"
