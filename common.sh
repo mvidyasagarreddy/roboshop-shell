@@ -60,7 +60,7 @@ mysql_schema_setup(){
   yum install mysql -y &>>${log_file}
 
   echo -e "${color} Load Schema ${nocolor}"
-  mysql -h mysql-dev.devopsb73.store -uroot -p${mysql_root_password} <${app_path}/schema/${component}.sql   &>>$log_file
+  mysql -h mysql-dev.devopsb73.store -uroot -p${mysql_root_password} </app/schema/${component}.sql   &>>$log_file
 }
 maven(){
   echo -e "${color} Installing Maven  ${no_color}"
