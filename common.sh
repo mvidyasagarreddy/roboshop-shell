@@ -72,8 +72,6 @@ maven(){
   mvn clean package &>>${log_file}
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
 
-  echo -e "${color} Copying the ${component} service file m  ${no_color}"
-  cp /home/centos/roboshop-shell/${component}.service /etc/systemd/system/${component}.service &>>${log_file}
 
   mysql_schema_setup
 
