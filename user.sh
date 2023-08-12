@@ -27,9 +27,9 @@ echo -e "\e[33m Setup SystemD Service  \e[0m"
 cp /home/centos/roboshop-shell/user.service /etc/systemd/system/user.service  &>>/tmp/roboshop.log
 
 echo -e "\e[33m Start User Service \e[0m"
-systemctl daemon-reload
-systemctl enable user
-systemctl restart user
+systemctl daemon-reload &>>/tmp/roboshop.log
+systemctl enable user &>>/tmp/roboshop.log
+systemctl restart user &>>/tmp/roboshop.log
 
 echo -e "\e[33m Copy MongoDB Repo file \e[0m"
 cp /home/centos/roboshop-shell/mongodb.repo /etc/yum.repos.d/mongodb.repo  &>>/tmp/roboshop.log
@@ -39,7 +39,7 @@ yum install mongodb-org-shell -y &>>/tmp/roboshop.log
 
 
 echo -e "\e[33m Load Schema \e[0m"
-mongo --host mongodb-dev.roboshopai.online </app/schema/user.js
+mongo --host mongodb-dev.roboshopai.online </app/schema/user.js &>>/tmp/roboshop.log
 
 
 
