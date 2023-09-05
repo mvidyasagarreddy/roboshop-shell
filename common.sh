@@ -11,10 +11,10 @@ fi
 
 stat_check(){
   if [ $1 -eq 0 ]; then
-        echo SUCCESS
+    echo SUCCESS
   else
-        echo FAILURE
-        exit 1
+    echo FAILURE
+    exit 1
   fi
 }
 
@@ -22,7 +22,7 @@ stat_check(){
 app_presetup(){
   echo -e "${color} Add Application User ${nocolor}"
   id roboshop &>>${log_file}
-  if [ $? -eq 1]; then
+  if [ $? -eq 1 ]; then
     useradd roboshop &>>${log_file}
   fi
   stat_check $?
@@ -106,7 +106,6 @@ maven(){
   mvn clean package &>>${log_file}
   mv target/${component}-1.0.jar ${component}.jar &>>${log_file}
   stat_check $?
-
 
   mysql_schema_setup
   systemd_setup
