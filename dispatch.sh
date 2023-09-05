@@ -1,28 +1,37 @@
+source common.sh
 
-echo -e "\e[33mInstall GoLang \e[0m"
+
+echo -e "${color} Install GoLang  ${nocolor}"
 yum install golang -y &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[33mAdd application User \e[0m"
+echo -e "${color} Add application User  ${nocolor}"
 useradd roboshop &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[33mSetup an app directory. \e[0m"
+echo -e "${color} Setup an app directory.  ${nocolor}"
 rmdir /app &>>/tmp/roboshop.log
 mkdir /app
+stat_check $?
 
-echo -e "\e[33mDownload the application code to created app directory. \e[0m"
+echo -e "${color} Download the application code to created app directory.  ${nocolor}"
 curl -L -o /tmp/dispatch.zip https://roboshop-artifacts.s3.amazonaws.com/dispatch.zip &>>/tmp/roboshop.log
 cd /app
 unzip /tmp/dispatch.zip &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[33mDownload the dependencies & build the software. \e[0m"
+echo -e "${color} Download the dependencies & build the software.  ${nocolor}"
 go mod init dispatch &>>/tmp/roboshop.log
 go get &>>/tmp/roboshop.log
 go build &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[33mSetup SystemD Payment Service \e[0m"
+echo -e "${color} Setup SystemD Payment Service  ${nocolor}"
 cp /home/centos/roboshop-shell/dispatch.service /etc/systemd/system/dispatch.service &>>/tmp/roboshop.log
+stat_check $?
 
-echo -e "\e[33mLoad and restart the service.\e[0m"
+echo -e "${color} Load and restart the service. ${nocolor}"
 systemctl daemon-reload &>>/tmp/roboshop.log
 systemctl enable dispatch &>>/tmp/roboshop.log
 systemctl restart dispatch &>>/tmp/roboshop.log
+stat_check $?

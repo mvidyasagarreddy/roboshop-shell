@@ -1,4 +1,4 @@
 source common.sh
-component shipping
+component=shipping
 
 maven
