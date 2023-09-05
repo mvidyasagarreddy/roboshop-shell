@@ -13,7 +13,7 @@ id roboshop &>>$log_file
 stat_check $?
 
 echo -e "${color} Setup an app directory.  ${nocolor}"
-rmdir /app &>>/tmp/roboshop.log
+rm -rf /app &>>/tmp/roboshop.log
 mkdir /app
 stat_check $?
 
