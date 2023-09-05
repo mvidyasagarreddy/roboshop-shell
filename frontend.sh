@@ -26,5 +26,5 @@ stat_check $?
 
 echo -e "${color} Starting Nginx Server ${nocolor}"
 systemctl enable nginx &>>${log_file}
-systemctl restart nginx &>>aA${log_file}
+systemctl restart nginx &>>${log_file}
 stat_check $?
