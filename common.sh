@@ -12,10 +12,10 @@ fi
 stat_check(){
   if [ $1 -eq 0 ]; then
         echo SUCCESS
-    else
+  else
         echo FAILURE
         exit 1
-    fi
+  fi
 }
 
 
