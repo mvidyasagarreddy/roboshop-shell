@@ -1,7 +1,6 @@
 source common.sh
 
 
-
 echo -e "${color} Installing Nginx ${nocolor}"
 yum install nginx -y &>>${log_file}
 stat_check $?

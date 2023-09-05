@@ -4,11 +4,11 @@ echo -e "${color} Copying the repo file   ${nocolor}"
 cp mongodb.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log
 stat_check $?
 
-echo -e "${color} Installing MongoDB server  ${nocolor}"
+echo -e "${color} Installing MongoDB server ${nocolor}"
 yum install mongodb-org -y &>>/tmp/roboshop.log &>>/tmp/roboshop.log
 stat_check $?
 
-echo -e "${color} Update MongoDB listen address[0m"
+echo -e "${color} Update MongoDB listen address ${nocolor}"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 stat_check $?
 
