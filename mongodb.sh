@@ -1,5 +1,4 @@
 source common.sh
-stat_check $?
 
 echo -e "${color} Copying the repo file   ${nocolor}"
 cp mongodb.repo /etc/yum.repos.d/mongo.repo &>>/tmp/roboshop.log

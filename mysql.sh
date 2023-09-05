@@ -1,7 +1,5 @@
 source common.sh
 
-
-
 echo -e "${color}  Disable MySQL Default Version ${nocolor}"
 yum module disable mysql -y &>>/tmp/roboshop.log
 stat_check $?

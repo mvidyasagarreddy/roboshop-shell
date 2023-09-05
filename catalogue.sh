@@ -3,5 +3,4 @@ component=catalogue
 
 
 nodejs
-
-mongodb
+mongo_schema_setup

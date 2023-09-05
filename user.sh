@@ -2,7 +2,8 @@
 source common.sh
 component=user
 nodejs
-mongodb
+
+mongo_schema-setup
 
 
 
