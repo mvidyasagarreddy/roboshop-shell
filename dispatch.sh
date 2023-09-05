@@ -6,7 +6,10 @@ yum install golang -y &>>/tmp/roboshop.log
 stat_check $?
 
 echo -e "${color} Add application User  ${nocolor}"
-useradd roboshop &>>/tmp/roboshop.log
+id roboshop &>>$log_file
+  if [ $? -eq 1 ]; then
+    useradd roboshop  &>>$log_file
+  fi
 stat_check $?
 
 echo -e "${color} Setup an app directory.  ${nocolor}"
